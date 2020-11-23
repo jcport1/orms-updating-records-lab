@@ -1,5 +1,6 @@
 require_relative "../config/environment.rb"
 
+require 'pry'
 class Student
 
   # Remember, you can access your database connection anywhere in this class
@@ -48,7 +49,7 @@ class Student
       VALUES (?,?);"
 
       DB[:conn].execute(sql, self.name, self.grade)
-      @id = DB[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0]
+      @id = DB[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0] 
     end 
   end 
 
@@ -73,7 +74,7 @@ class Student
 
     sql = "SELECT * FROM students WHERE name = ?;"
 
-    result = DB[:conn].execute(sql,name)[0]
+    result = DB[:conn].execute(sql,name)[0] #nested hash 
     Student.new(result[0], result[1], result[2])
 
   end 
